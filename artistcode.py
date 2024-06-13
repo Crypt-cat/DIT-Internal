@@ -8,10 +8,24 @@ cursor = conn.cursor()
 
 os.system("clear")
 
-print("Welcome to the Music Artists Database")
+print("Welcome to the Musical Artist Database")
+time.sleep(3)
+os.system("clear")
 
 def get_artists_by_placement():
-  cursor.execute('SELECT * FROM Artists;')
+  order = input("a or d? (Ascending or Descending)\n\n>").lower().strip()
+  if order == "a":
+    os.system("clear")
+    cursor.execute('SELECT * FROM Artists;')
+  elif order == "d":
+    os.system("clear")
+    cursor.execute('SELECT * FROM Artists ORDER BY ID DESC;')
+  else:
+    os.system("clear")
+    print("Invalid choice")
+    time.sleep(2)
+    os.system("clear")
+    return
 
   get_artists_by_placement = cursor.fetchall()
 
@@ -28,12 +42,23 @@ def get_artists_by_placement():
             print(f"|{get_artists_by_placement[1]}\t|{get_artists_by_placement[7]}\t\t|{get_artists_by_placement[6]}\t\t|#{get_artists_by_placement[0]}\t\t|#{get_artists_by_placement[3]}\t\t|{get_artists_by_placement[2]}\t|{get_artists_by_placement[4]}\t|{get_artists_by_placement[5]}\t      |")
        else:
            print(f"|{get_artists_by_placement[1]}\t|{get_artists_by_placement[7]}\t\t|{get_artists_by_placement[6]}\t|#{get_artists_by_placement[0]}\t\t|#{get_artists_by_placement[3]}\t\t|{get_artists_by_placement[2]}\t|{get_artists_by_placement[4]}\t|{get_artists_by_placement[5]}\t      |")
-        
-    
 
-  
+
+
 def get_artists_by_peak_listeners():
-  query = "SELECT * FROM Artists ORDER BY PeakListeners DESC;"
+  order = input("a or d? (Ascending or Descending)\n\n>").lower().strip()
+  if order == "a":
+    os.system("clear")
+    query = "SELECT * FROM Artists ORDER BY PeakListeners;"
+  elif order == "d":
+    os.system("clear")
+    query = "SELECT * FROM Artists ORDER BY PeakListeners DESC;"
+  else:
+    os.system("clear")
+    print("Invalid choice")
+    time.sleep(2)
+    os.system("clear")
+    return
 
   cursor.execute(query)
 
@@ -52,14 +77,23 @@ def get_artists_by_peak_listeners():
             print(f"|{get_artists_by_peak_listeners[1]}\t|{get_artists_by_peak_listeners[7]}\t\t|{get_artists_by_peak_listeners[6]}\t\t|#{get_artists_by_peak_listeners[0]}\t\t|#{get_artists_by_peak_listeners[3]}\t\t|{get_artists_by_peak_listeners[2]}\t|{get_artists_by_peak_listeners[4]}\t|{get_artists_by_peak_listeners[5]}\t      |")
         else:
            print(f"|{get_artists_by_peak_listeners[1]}\t|{get_artists_by_peak_listeners[7]}\t\t|{get_artists_by_peak_listeners[6]}\t|#{get_artists_by_peak_listeners[0]}\t\t|#{get_artists_by_peak_listeners[3]}\t\t|{get_artists_by_peak_listeners[2]}\t|{get_artists_by_peak_listeners[4]}\t|{get_artists_by_peak_listeners[5]}\t      |")
-    
-  
-
 
 
 
 def get_artists_by_albums():
-  query = "SELECT * FROM Artists ORDER BY StudioAlbums DESC;"
+  order = input("a or d? (Ascending or Descending)\n\n>").lower().strip()
+  if order == "a":
+    os.system("clear")
+    query = "SELECT * FROM Artists ORDER BY StudioAlbums;"
+  elif order == "d":
+    os.system("clear")
+    query = "SELECT * FROM Artists ORDER BY StudioAlbums DESC;"
+  else:
+    os.system("clear")
+    print("Invalid choice")
+    time.sleep(2)
+    os.system("clear")
+    return
 
   cursor.execute(query)
 
@@ -81,10 +115,20 @@ def get_artists_by_albums():
 
 
 
-
-
 def get_artists_by_alphabetical_order():
-  query = "SELECT * FROM Artists ORDER BY Name;"
+  order = input("a or d? (Ascending or Descending)\n\n>").lower().strip()
+  if order == "a":
+    os.system("clear")
+    query = "SELECT * FROM Artists ORDER BY Name;"
+  elif order == "d":
+    os.system("clear")
+    query = "SELECT * FROM Artists ORDER BY Name DESC;"
+  else:
+    os.system("clear")
+    print("Invalid choice")
+    time.sleep(2)
+    os.system("clear")
+    return
 
   cursor.execute(query)
 
@@ -105,8 +149,9 @@ def get_artists_by_alphabetical_order():
            print(f"|{get_artists_by_alphabetical_order[1]}\t|{get_artists_by_alphabetical_order[7]}\t\t|{get_artists_by_alphabetical_order[6]}\t|#{get_artists_by_alphabetical_order[0]}\t\t|#{get_artists_by_alphabetical_order[3]}\t\t|{get_artists_by_alphabetical_order[2]}\t|{get_artists_by_alphabetical_order[4]}\t|{get_artists_by_alphabetical_order[5]}\t      |")
 
 
+
 while True:
-  choice = input("\n1. Get by current placement\n2. Get by peak listeners\n3. Get by albums\n4. Get by alphabetical order\n5. Exit\n\n> ")
+  choice = input("\n1. Get artists by current placement\n2. Get artists by peak listeners\n3. Get artists by albums released\n4. Get artists by alphabetical order\n5. Exit\n\n> ").strip()
   if choice == "1":
     os.system("clear")
     time.sleep(0.5)
@@ -129,6 +174,7 @@ while True:
     os.system("clear")
     print("Invalid choice")
     time.sleep(2)
+    os.system("clear")
 
 
 conn.commit()
